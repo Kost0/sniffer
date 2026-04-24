@@ -1,0 +1,7 @@
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/sniffer.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/edit_cache.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/rebuild_cache.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/list_install_components.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/install.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/install/local.dir
+/home/kost/Projects/sniffer_project/sniffer/build/CMakeFiles/install/strip.dir
