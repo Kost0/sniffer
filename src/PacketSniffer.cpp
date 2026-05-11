@@ -6,7 +6,7 @@
 
 PacketSniffer* PacketSniffer::instance_ = nullptr;
 
-void PacketSniffer::sigHandler(int /*sig*/) {
+void PacketSniffer::sigHandler(int) {
     if (instance_) instance_->stop();
 }
 
@@ -22,11 +22,9 @@ PacketSniffer::PacketSniffer()
 void PacketSniffer::run() {
     const auto& cfg = Config::getInstance();
 
-    // Observer: subscribe stats collector and renderer
     engine_.addObserver(stats_);
     engine_.addObserver(renderer_);
 
-    // Must specify an interface
     if (cfg.interface.empty()) {
         pcap_if_t* devs = nullptr;
         char errbuf[PCAP_ERRBUF_SIZE];

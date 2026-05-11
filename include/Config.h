@@ -1,11 +1,10 @@
 #pragma once
 #include <string>
 
-
 struct Config {
     std::string interface;
-    std::string filter;   
-    int         count   = 0; 
+    std::string filter;
+    int         count   = 0;
     bool        verbose = false;
 
     static Config& getInstance() {

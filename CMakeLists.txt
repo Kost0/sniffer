@@ -41,3 +41,5 @@ target_link_libraries(sniffer
 )
 
 install(TARGETS sniffer DESTINATION bin)
+
+add_subdirectory(tests)

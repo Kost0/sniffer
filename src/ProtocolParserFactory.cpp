@@ -34,7 +34,7 @@ struct UDPParser : IProtocolParser {
 
 struct UnsupportedParser : IProtocolParser {
     PacketInfo parse(const uint8_t*, int) override {
-        return PacketInfo{}; 
+        return PacketInfo{};
     }
 };
 

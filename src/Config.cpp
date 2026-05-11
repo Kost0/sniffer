@@ -4,6 +4,7 @@
 #include <getopt.h>
 
 void Config::parse(int argc, char** argv) {
+    optind = 1;
     int opt;
     while ((opt = getopt(argc, argv, "i:f:n:vh")) != -1) {
         switch (opt) {

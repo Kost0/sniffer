@@ -1,3 +1,6 @@
+# FindPCAP.cmake — locate libpcap on the system
+# Sets: PCAP_FOUND, PCAP_INCLUDE_DIRS, PCAP_LIBRARIES
+
 find_path(PCAP_INCLUDE_DIR
     NAMES pcap.h pcap/pcap.h
     PATHS /usr/include /usr/local/include

@@ -17,9 +17,9 @@ CaptureEngine::~CaptureEngine() {
 bool CaptureEngine::open(const std::string& iface) {
     char errbuf[PCAP_ERRBUF_SIZE];
     handle_ = pcap_open_live(iface.c_str(),
-                              65535,   
-                              1,       
-                              1000,    
+                              65535,
+                              1,
+                              1000,
                               errbuf);
     if (!handle_) {
         std::fprintf(stderr, "[CaptureEngine] pcap_open_live: %s\n", errbuf);
