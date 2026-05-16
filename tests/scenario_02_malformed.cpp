@@ -6,7 +6,7 @@
 #include "PacketInfo.h"
 
 int main() {
-    std::cout << "Scenario 2: Malformed Packet Resilience\n";
+    std::cout << "Scenario 2: Malformed Packet Resilience ===\n\n";
 
     ProtocolParser parser;
     StatisticsCollector stats;
@@ -27,26 +27,21 @@ int main() {
     };
 
     for (auto& tc : cases) {
-        std::cout << "Testing: " << tc.name << " ... ";
+        std::cout << "Testing: " << tc.name << "\n";
         try {
             PacketInfo pkt = parser.parse(tc.data.data(),
                                           static_cast<int>(tc.data.size()));
             if (!pkt.protocol.empty()) {
                 stats.onPacket(pkt);
             }
-            std::cout << "OK (protocol='"<< pkt.protocol <<"')\n";
         } catch (...) {
             std::cout << "EXCEPTION (unexpected!)\n";
             ++crashCount;
         }
     }
 
-    std::cout << "\nAssertions\n";
     assert(crashCount == 0);
-    std::cout << "[OK] No crashes on any malformed input\n";
-
     assert(stats.totalPackets() >= 0);
-    std::cout << "[OK] StatisticsCollector remains consistent\n";
 
     std::cout << "\n[PASSED] Scenario 2\n";
     return 0;

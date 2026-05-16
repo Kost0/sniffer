@@ -8,7 +8,6 @@ static void resetConfig() {
     c.interface = "";
     c.filter    = "";
     c.count     = 0;
-    c.verbose   = false;
 }
 
 TEST(Config, SingletonReturnsSameInstance) {
@@ -23,7 +22,6 @@ TEST(Config, DefaultValuesAreEmpty) {
     EXPECT_EQ(c.interface, "");
     EXPECT_EQ(c.filter,    "");
     EXPECT_EQ(c.count,     0);
-    EXPECT_FALSE(c.verbose);
 }
 
 TEST(Config, ParsesInterfaceFlag) {
@@ -47,26 +45,17 @@ TEST(Config, ParsesCountFlag) {
     EXPECT_EQ(Config::getInstance().count, 100);
 }
 
-TEST(Config, ParsesVerboseFlag) {
-    resetConfig();
-    char* argv[] = { (char*)"sniffer", (char*)"-v" };
-    Config::getInstance().parse(2, argv);
-    EXPECT_TRUE(Config::getInstance().verbose);
-}
-
 TEST(Config, ParsesMultipleFlagsTogether) {
     resetConfig();
     char* argv[] = { (char*)"sniffer",
                      (char*)"-i", (char*)"wlan0",
                      (char*)"-f", (char*)"udp",
-                     (char*)"-n", (char*)"50",
-                     (char*)"-v" };
-    Config::getInstance().parse(8, argv);
+                     (char*)"-n", (char*)"50",};
+    Config::getInstance().parse(7, argv);
     auto& c = Config::getInstance();
     EXPECT_EQ(c.interface, "wlan0");
     EXPECT_EQ(c.filter,    "udp");
     EXPECT_EQ(c.count,     50);
-    EXPECT_TRUE(c.verbose);
 }
 
 TEST(Config, ZeroCountMeansUnlimited) {
@@ -83,7 +72,6 @@ TEST(Config, NoFlagsLeavesDefaults) {
     auto& c = Config::getInstance();
     EXPECT_EQ(c.interface, "");
     EXPECT_EQ(c.count,     0);
-    EXPECT_FALSE(c.verbose);
 }
 
 TEST(Config, InterfaceLoopback) {

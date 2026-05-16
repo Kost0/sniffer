@@ -5,7 +5,6 @@ struct Config {
     std::string interface;
     std::string filter;
     int         count   = 0;
-    bool        verbose = false;
 
     static Config& getInstance() {
         static Config instance;

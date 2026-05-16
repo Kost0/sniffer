@@ -61,7 +61,6 @@ int main() {
         { makeUDPFrame("8.8.8.8",      "192.168.1.10",  53, 12345),  80  },
     };
 
-    std::cout << "Packets received\n";
     for (auto& raw : packets) {
         PacketInfo pkt = parser.parse(raw.data.data(),
                                        static_cast<int>(raw.data.size()));
@@ -71,24 +70,12 @@ int main() {
         renderer.onPacket(pkt);
     }
 
-    std::cout << "\nAssertions\n";
-
     assert(stats.totalPackets() == 5);
-    std::cout << "[OK] totalPackets == 5\n";
-
     assert(stats.packetsForProtocol("TCP") == 3);
-    std::cout << "[OK] TCP packets == 3\n";
-
     assert(stats.packetsForProtocol("UDP") == 2);
-    std::cout << "[OK] UDP packets == 2\n";
-
     assert(stats.totalBytes() == 74 + 120 + 52 + 64 + 80);
-    std::cout << "[OK] totalBytes == 390\n";
-
     assert(stats.bytesForIp("8.8.8.8") == 64 + 80);
-    std::cout << "[OK] 8.8.8.8 bytes == 144\n";
 
-    std::cout << "\nSummary\n";
     renderer.printSummary(stats);
 
     std::cout << "\n[PASSED] Scenario 1\n";
